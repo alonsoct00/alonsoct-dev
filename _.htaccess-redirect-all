@@ -1,0 +1,30 @@
+
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:alonsoct.dev
+RewriteEngine on
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.alonsoct\.dev [NC]
+RewriteRule (.*) https://alonsoct.dev/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} (www\.)?alonsoct.dev
+RewriteCond %{HTTP_HOST} ^www.alonsoct.dev$ [NC]
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+RewriteEngine on
+RewriteBase /
+# Rewrites all URLS without blog in them
+RewriteCond %{REQUEST_URI} !^/resume/
+# Rewrites all URLS [Replace "example" with the actual domain, without the TLD (.com, .net, .biz, etc)]
+RewriteCond %{HTTP_HOST} ^(www\.)?alonsoct\.
+# Rewrite all those to insert /folder
+RewriteRule ^(.*)$ /resume/$1 [L]
+RewriteEngine on
+RewriteCond %{HTTP_HOST} alonsoct\.dev [NC]
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^(.*)$ /resume/$1 [L]
+
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:alonsoct.dev
+
+Options -Indexes
+
